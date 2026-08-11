@@ -30,8 +30,7 @@ La idea es que instalar un tema sea tan sencillo como **meter su carpeta dentro 
 - 🐍 Detección automática de Python.
 - 📄 Guardado automático de la ruta de Python.
 - 🖥️ Diseñado para Windows.
-- 📦 El programa principal se distribuye como `.exe`.
-- 🔧 Los temas utilizan Python y sus propias dependencias.
+- 📦 Disponible como ejecutable `.exe`.
 
 ---
 
@@ -47,7 +46,7 @@ Para utilizar Luigi Theme Assistant necesitas:
 - `pystray`.
 - `Pillow`.
 
-> **Importante:** las librerías `pygame`, `pystray` y `Pillow` son necesarias para ejecutar los archivos `config_desktop.py` de los temas.
+> **Importante:** estas librerías son necesarias para ejecutar los temas.
 
 ---
 
@@ -81,7 +80,7 @@ Si ambos comandos funcionan y muestran una versión de Python igual o superior a
 
 # 📚 Instalar las librerías necesarias
 
-Los temas incluidos en Luigi Theme Assistant utilizan:
+Los temas utilizan las siguientes librerías:
 
 - `pygame`
 - `pystray`
@@ -95,22 +94,17 @@ python -m pip install pygame pystray Pillow
 
 Espera a que termine la instalación.
 
-Una vez instaladas, los `config_desktop.py` de los temas podrán ejecutarse correctamente.
-
-> **Importante:** estas librerías son necesarias para los temas porque sus archivos `config_desktop.py` se ejecutan directamente con Python.
-
 ---
 
 # 🚀 Instalación de Luigi Theme Assistant
 
-Descarga la versión de Luigi Theme Assistant que quieras utilizar.
+Descarga Luigi Theme Assistant y coloca todos sus archivos en una carpeta.
 
 La estructura principal debería quedar parecida a esta:
 
 ```text
 Luigi Theme Assistant/
 │
-├── Luigi Theme Assistant.exe
 ├── Luigi_Theme_Assistant.exe
 ├── icon.png
 │
@@ -119,118 +113,10 @@ Luigi Theme Assistant/
 └── Themes/
 ```
 
-El archivo que debes ejecutar normalmente es:
-
-```text
-Luigi Theme Assistant.exe
-```
-
-Este archivo funciona como **launcher**.
-
-El launcher inicia:
+Para iniciar el programa, ejecuta:
 
 ```text
 Luigi_Theme_Assistant.exe
-```
-
----
-
-# ⚙️ ¿Qué hace Luigi_Theme_Assistant.exe?
-
-`Luigi_Theme_Assistant.exe` es el programa principal.
-
-Cuando se inicia:
-
-1. Busca una instalación válida de Python.
-2. Comprueba `python.exe`.
-3. Comprueba `pythonw.exe`.
-4. Guarda sus rutas.
-5. Busca la carpeta `Themes`.
-6. Busca los temas disponibles.
-7. Crea el menú del área de notificaciones.
-8. Permite seleccionar y ejecutar los temas.
-
-El programa principal está compilado como `.exe`.
-
-Sus propias dependencias se incluyen durante la compilación.
-
-Sin embargo, esto **no significa que las dependencias utilizadas por los temas estén incluidas en Python**.
-
-Los temas se ejecutan por separado mediante `pythonw.exe`.
-
----
-
-# 🧩 Diferencia entre el Assistant y los temas
-
-Luigi Theme Assistant funciona mediante varios componentes.
-
-## `Luigi Theme Assistant.exe`
-
-Es el **launcher**.
-
-Es el programa que el usuario ejecuta normalmente.
-
-Su función principal es iniciar:
-
-```text
-Luigi_Theme_Assistant.exe
-```
-
-El launcher utiliza principalmente módulos incluidos en Python, como:
-
-```python
-import os
-import subprocess
-```
-
----
-
-## `Luigi_Theme_Assistant.exe`
-
-Es el programa principal del sistema.
-
-Se encarga de:
-
-- Detectar Python.
-- Guardar las rutas de Python.
-- Buscar los temas.
-- Crear el menú del área de notificaciones.
-- Ejecutar los temas.
-- Cambiar entre temas.
-- Detener el tema anterior.
-
-Este programa está compilado como `.exe`.
-
----
-
-## `config_desktop.py`
-
-Este archivo pertenece a cada tema.
-
-A diferencia del Assistant, normalmente **no se ejecuta como un `.exe`**.
-
-Luigi Theme Assistant lo ejecuta mediante:
-
-```text
-pythonw.exe
-```
-
-Por eso las librerías utilizadas por el tema tienen que estar instaladas en Python.
-
-Por ejemplo, el `config_desktop.py` proporcionado utiliza:
-
-```python
-import pygame
-import pystray
-from PIL import Image
-```
-
-Por tanto, Python debe tener instalados:
-
-```text
-pygame
-pystray
-Pillow
 ```
 
 ---
@@ -260,9 +146,7 @@ Las rutas serán diferentes dependiendo del ordenador.
 
 Luigi Theme Assistant lo crea automáticamente.
 
-Tampoco necesitas escribir manualmente la ruta de Python dentro del programa.
-
-Esto permite que Luigi Theme Assistant funcione en diferentes ordenadores sin tener que modificar manualmente las rutas.
+Tampoco necesitas escribir manualmente la ruta de Python.
 
 Si la ruta guardada deja de funcionar, Luigi Theme Assistant intentará detectar Python de nuevo.
 
@@ -270,9 +154,7 @@ Si la ruta guardada deja de funcionar, Luigi Theme Assistant intentará detectar
 
 # 🎨 Crear tu propio tema
 
-Una de las partes principales de Luigi Theme Assistant es que puedes crear tus propios temas.
-
-No necesitas modificar Luigi Theme Assistant para hacerlo.
+Una de las principales funciones de Luigi Theme Assistant es permitirte crear tus propios temas.
 
 La creación de un tema es manual y consiste en crear una carpeta dentro de `Themes` y colocar dentro los archivos necesarios.
 
@@ -580,7 +462,7 @@ Themes/
 
 # 🎮 Instalar un tema descargado
 
-Si alguien comparte contigo un tema, normalmente recibirás una carpeta parecida a:
+Si alguien comparte contigo un tema, normalmente recibirás una carpeta parecida a esta:
 
 ```text
 Super Luigi Theme/
@@ -614,9 +496,13 @@ Luigi Theme Assistant/
         └── icon.png
 ```
 
-### 4. Ejecuta Luigi Theme Assistant.
+### 4. Ejecuta:
 
-El tema debería aparecer automáticamente en el menú.
+```text
+Luigi_Theme_Assistant.exe
+```
+
+El nuevo tema debería aparecer automáticamente en el menú.
 
 ---
 
@@ -810,7 +696,7 @@ Si aparece un error indicando que no existe un módulo como:
 ModuleNotFoundError: No module named 'pygame'
 ```
 
-instala las dependencias de los temas:
+instala las librerías necesarias:
 
 ```bat
 python -m pip install pygame pystray Pillow
@@ -883,99 +769,7 @@ Por eso puedes compartir la carpeta del tema con otras personas sin tener que mo
 
 ---
 
-# 🧩 ¿Cómo funciona el sistema?
-
-Luigi Theme Assistant está dividido en varios componentes.
-
-## `Luigi Theme Assistant.exe`
-
-Es el **launcher**.
-
-Es el programa que el usuario ejecuta normalmente.
-
-Su función principal es iniciar:
-
-```text
-Luigi_Theme_Assistant.exe
-```
-
----
-
-## `Luigi_Theme_Assistant.exe`
-
-Es el programa principal.
-
-Se encarga de:
-
-- Detectar Python.
-- Comprobar `python.exe`.
-- Comprobar `pythonw.exe`.
-- Guardar las rutas de Python.
-- Buscar la carpeta `Themes`.
-- Detectar los temas disponibles.
-- Crear el menú del área de notificaciones.
-- Ejecutar los `config_desktop.py`.
-- Cambiar entre temas.
-- Detener el tema anterior.
-
----
-
-## `config_desktop.py`
-
-Es el programa de cada tema.
-
-Se ejecuta utilizando:
-
-```text
-pythonw.exe
-```
-
-y utiliza las librerías instaladas en Python.
-
-Por ejemplo:
-
-```python
-import pygame
-import pystray
-from PIL import Image
-```
-
-Por eso es necesario tener instaladas:
-
-```text
-pygame
-pystray
-Pillow
-```
-
----
-
-# 🐍 ¿Por qué los temas necesitan Python?
-
-Luigi Theme Assistant no convierte automáticamente los temas en `.exe`.
-
-Los temas utilizan:
-
-```text
-config_desktop.py
-```
-
-y estos archivos se ejecutan mediante el Python instalado en el ordenador.
-
-Por eso cada ordenador que quiera utilizar temas debe tener:
-
-```text
-Python
-pygame
-pystray
-Pillow
-```
-
-instalados.
-
----
-
-# 📄 ¿Por qué existe `ruta_python.json`?
+# 📄 ¿Por qué existe ruta_python.json?
 
 Cada ordenador puede tener Python instalado en una ubicación diferente.
 
@@ -991,7 +785,7 @@ o:
 C:\Python312\
 ```
 
-Luigi Theme Assistant detecta automáticamente la instalación y guarda las rutas en:
+Luigi Theme Assistant detecta automáticamente la instalación de Python y guarda sus rutas en:
 
 ```text
 config/ruta_python.json
@@ -1008,7 +802,6 @@ Una instalación completa puede tener esta estructura:
 ```text
 Luigi Theme Assistant/
 │
-├── Luigi Theme Assistant.exe
 ├── Luigi_Theme_Assistant.exe
 ├── icon.png
 │
@@ -1159,7 +952,7 @@ python -m pip install pygame pystray Pillow
 Ejecuta:
 
 ```text
-Luigi Theme Assistant.exe
+Luigi_Theme_Assistant.exe
 ```
 
 ### 10.
