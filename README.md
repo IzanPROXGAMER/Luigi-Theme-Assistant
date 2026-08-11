@@ -977,4 +977,6 @@ Selecciona tu tema.
 
 **Comparte tus temas.**
 
+**Agradecería que me dejaras una estrella, gracias :3**
+
 🎨 🖼️ 🎵 🟢
