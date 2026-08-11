@@ -31,6 +31,7 @@ La idea es que instalar un tema sea tan sencillo como **meter su carpeta dentro 
 - 📄 Guardado automático de la ruta de Python.
 - 🖥️ Diseñado para Windows.
 - 📦 El programa principal se distribuye como `.exe`.
+- 📦 Las librerías necesarias para el programa ya están incluidas en el ejecutable.
 
 ---
 
@@ -42,18 +43,18 @@ Para utilizar Luigi Theme Assistant necesitas:
 - Python **3.10.11 o una versión superior**.
 - `python.exe`.
 - `pythonw.exe`.
-- Las siguientes librerías de Python:
-  - `pygame`
-  - `pystray`
-  - `Pillow`
 
-> **Importante:** se recomienda utilizar una versión de Python superior a 3.10.11 para asegurar la compatibilidad.
+> **Importante:** Luigi Theme Assistant ya incluye las librerías necesarias para el funcionamiento del programa. No necesitas instalar manualmente `pygame`, `pystray` ni `Pillow` para utilizar Luigi Theme Assistant.
+
+Python sí es necesario porque los temas utilizan archivos `config_desktop.py`, que Luigi Theme Assistant ejecuta mediante la instalación de Python del usuario.
 
 ---
 
 # 🐍 Instalación de Python
 
 Si no tienes Python instalado, primero debes instalarlo.
+
+Se recomienda utilizar una versión de Python **superior a 3.10.11**.
 
 Durante la instalación de Python se recomienda activar la opción:
 
@@ -75,19 +76,7 @@ pythonw --version
 
 Si ambos comandos funcionan y muestran una versión de Python igual o superior a 3.10.11, puedes continuar.
 
----
-
-# 📚 Instalación de las librerías
-
-Abre CMD y ejecuta:
-
-```bat
-python -m pip install pygame pystray Pillow
-```
-
-Espera a que termine la instalación.
-
-Una vez instaladas las librerías, Luigi Theme Assistant podrá ejecutar los temas.
+> **No necesitas instalar pygame, pystray ni Pillow manualmente. Luigi Theme Assistant ya incluye estas librerías.**
 
 ---
 
@@ -140,6 +129,8 @@ Cuando se inicia:
 7. Crea el menú del área de notificaciones.
 8. Permite seleccionar y ejecutar los temas.
 
+Las librerías necesarias para el propio Luigi Theme Assistant ya están incluidas en el ejecutable.
+
 ---
 
 # 📄 ruta_python.json
@@ -171,6 +162,8 @@ Tampoco necesitas escribir manualmente la ruta de Python dentro del programa.
 
 Esto permite que Luigi Theme Assistant funcione en diferentes ordenadores sin tener que modificar el código para cada instalación.
 
+Si la ruta guardada deja de funcionar, Luigi Theme Assistant intentará detectar Python de nuevo.
+
 ---
 
 # 🎨 Crear tu propio tema
@@ -179,17 +172,44 @@ Una de las partes principales de Luigi Theme Assistant es que puedes crear tus p
 
 No necesitas modificar Luigi Theme Assistant para hacerlo.
 
+La creación de un tema es completamente manual y consiste en crear una carpeta dentro de `Themes` y colocar dentro los archivos necesarios.
+
 ---
 
-## 1. Crea una carpeta dentro de `Themes`
+# 📁 Estructura de un tema
 
-Ve a:
+Cada tema necesita cuatro archivos:
+
+```text
+config_desktop.py
+bgm.wav
+background.png
+icon.png
+```
+
+Por tanto, un tema completo tendrá esta estructura:
+
+```text
+Mi Tema/
+├── config_desktop.py
+├── bgm.wav
+├── background.png
+└── icon.png
+```
+
+A continuación se explica cómo crear cada uno.
+
+---
+
+# 1️⃣ Crear la carpeta del tema
+
+Abre la carpeta:
 
 ```text
 Themes/
 ```
 
-Y crea una carpeta con el nombre que quieras.
+Crea una nueva carpeta y ponle el nombre que quieras.
 
 Por ejemplo:
 
@@ -198,7 +218,7 @@ Themes/
 └── Mi Tema/
 ```
 
-El nombre de esta carpeta será el nombre que aparecerá en el menú de Luigi Theme Assistant.
+El nombre de la carpeta será el nombre que aparecerá en el menú de Luigi Theme Assistant.
 
 Por ejemplo:
 
@@ -209,36 +229,44 @@ Themes/
 └── Mi Tema/
 ```
 
+Puedes utilizar prácticamente cualquier nombre que quieras.
+
 ---
 
-# 🖼️ 2. Consigue una imagen `.png`
+# 2️⃣ Añadir el fondo de escritorio
 
-Busca o crea una imagen que quieras utilizar como fondo de escritorio.
+Consigue una imagen que quieras utilizar como fondo de escritorio.
 
-Debe ser un archivo `.png`.
+La imagen debe ser un archivo:
 
-Colócala dentro de la carpeta del tema y llámala exactamente:
+```text
+.png
+```
+
+Colócala dentro de la carpeta de tu tema.
+
+Debes llamarla exactamente:
 
 ```text
 background.png
 ```
 
-> **Importante:** `background.png` está escrito así intencionadamente. El programa utiliza exactamente ese nombre.
-
-La carpeta quedaría:
+Por ejemplo:
 
 ```text
 Mi Tema/
 └── background.png
 ```
 
+> **Importante:** el nombre debe ser exactamente `background.png`.
+
 ---
 
-# 🎵 3. Consigue un archivo de audio `.wav`
+# 3️⃣ Añadir la música
 
-Ahora necesitas un archivo de audio para la música de fondo.
+Ahora necesitas la música de fondo del tema.
 
-Debe ser un archivo:
+El archivo debe estar en formato:
 
 ```text
 .wav
@@ -250,9 +278,9 @@ Renómbralo exactamente:
 bgm.wav
 ```
 
-Y colócalo dentro de la carpeta del tema.
+Colócalo dentro de la carpeta del tema.
 
-Ahora tendremos:
+Ahora tendrás:
 
 ```text
 Mi Tema/
@@ -260,25 +288,27 @@ Mi Tema/
 └── bgm.wav
 ```
 
-La música se reproducirá automáticamente cuando se active el tema.
+La música comenzará automáticamente cuando se active el tema.
 
-Además, se reproducirá en bucle.
+La música se reproducirá en bucle.
 
 ---
 
-# 🟢 4. Consigue un icono `.png`
+# 4️⃣ Añadir el icono
 
-El tema también necesita un icono para el área de notificaciones de Windows.
+Cada tema también necesita un icono que aparecerá en el área de notificaciones de Windows.
 
-Consigue una imagen `.png` y llámala:
+Consigue o crea una imagen `.png`.
+
+Renómbrala:
 
 ```text
 icon.png
 ```
 
-Colócala dentro de la carpeta.
+Colócala dentro de la carpeta del tema.
 
-Ahora tendremos:
+Ahora tendrás:
 
 ```text
 Mi Tema/
@@ -289,7 +319,7 @@ Mi Tema/
 
 ---
 
-# 🐍 5. Crea `config_desktop.py`
+# 5️⃣ Crear config_desktop.py
 
 Ahora crea un archivo Python llamado exactamente:
 
@@ -311,7 +341,7 @@ Mi Tema/
 
 ---
 
-# 💻 Código de `config_desktop.py`
+# 🐍 Código de config_desktop.py
 
 Copia exactamente este código dentro de `config_desktop.py`:
 
@@ -434,11 +464,13 @@ icono = pystray.Icon(
 icono.run()
 ```
 
+> **Importante:** no cambies la indentación del código. Python utiliza la indentación para determinar qué instrucciones pertenecen a cada función.
+
 ---
 
-# 📁 Estructura final de un tema
+# 📁 Estructura final de tu tema
 
-Cuando hayas terminado, tu tema debería tener exactamente esta estructura:
+Cuando hayas terminado todos los pasos, tu tema debería quedar exactamente así:
 
 ```text
 Themes/
@@ -450,13 +482,13 @@ Themes/
     └── icon.png
 ```
 
-No necesitas añadir nada más.
+Eso es todo lo necesario para un tema básico.
 
 ---
 
 # 🎮 Instalar un tema descargado
 
-Si alguien comparte contigo un tema, normalmente tendrás una carpeta parecida a:
+Si alguien comparte contigo un tema, normalmente recibirás una carpeta parecida a esta:
 
 ```text
 Super Luigi Theme/
@@ -476,7 +508,7 @@ Para instalarlo:
 Luigi Theme Assistant/Themes/
 ```
 
-### 3. Pega la carpeta ahí.
+### 3. Pega la carpeta dentro.
 
 Por ejemplo:
 
@@ -492,7 +524,7 @@ Luigi Theme Assistant/
 
 ### 4. Ejecuta Luigi Theme Assistant.
 
-El tema debería aparecer automáticamente en el menú.
+El nuevo tema debería aparecer automáticamente en el menú.
 
 ---
 
@@ -520,7 +552,7 @@ Luigi Theme Assistant:
 
 1. Detendrá el tema anterior.
 2. Ejecutará el nuevo `config_desktop.py`.
-3. Cambiará el fondo.
+3. Cambiará el fondo de escritorio.
 4. Comenzará la música.
 5. Mostrará el icono del nuevo tema.
 
@@ -538,19 +570,19 @@ Al hacer clic derecho sobre el icono del tema en el área de notificaciones enco
 ❌ Salir
 ```
 
-### ▶ Reproducir
+## ▶ Reproducir
 
-Inicia la música.
+Inicia la música del tema.
 
-### ⏸ Pausar / Reanudar
+## ⏸ Pausar / Reanudar
 
 Pausa la música o la vuelve a reproducir desde donde estaba.
 
-### ⏹ Detener
+## ⏹ Detener
 
 Detiene completamente la música.
 
-### ❌ Salir
+## ❌ Salir
 
 Cierra el tema y detiene la música.
 
@@ -580,7 +612,7 @@ Themes/
     └── config_desktop.py
 ```
 
-El nombre debe ser exactamente:
+El archivo debe llamarse exactamente:
 
 ```text
 config_desktop.py
@@ -598,11 +630,13 @@ bgm.wav
 
 y que esté dentro de la carpeta del tema.
 
-También puedes comprobar que Pygame esté instalado:
+Comprueba también que no sea realmente un archivo como:
 
-```bat
-python -m pip install pygame
+```text
+bgm.wav.wav
 ```
+
+Windows puede ocultar las extensiones conocidas.
 
 ---
 
@@ -620,6 +654,14 @@ y que esté en la misma carpeta que:
 config_desktop.py
 ```
 
+La estructura debe ser:
+
+```text
+Mi Tema/
+├── config_desktop.py
+└── background.png
+```
+
 ---
 
 ## ❌ No aparece el icono
@@ -632,13 +674,13 @@ icon.png
 
 dentro de la carpeta del tema.
 
-También asegúrate de que el archivo sea realmente un PNG.
+También asegúrate de que sea realmente una imagen PNG válida.
 
 ---
 
 ## ❌ Python no se detecta
 
-Prueba en CMD:
+Abre CMD y prueba:
 
 ```bat
 python --version
@@ -650,17 +692,15 @@ y:
 pythonw --version
 ```
 
-Si Python no aparece, vuelve a instalar Python y activa:
+Si Python no aparece, vuelve a instalar Python.
+
+Durante la instalación activa:
 
 ```text
 Add Python to PATH
 ```
 
-Después instala las librerías:
-
-```bat
-python -m pip install pygame pystray Pillow
-```
+Después vuelve a iniciar Luigi Theme Assistant.
 
 ---
 
@@ -668,7 +708,7 @@ python -m pip install pygame pystray Pillow
 
 Los nombres de los archivos son importantes.
 
-Actualmente Luigi Theme Assistant espera:
+Actualmente Luigi Theme Assistant espera estos nombres exactos:
 
 ```text
 config_desktop.py
@@ -677,15 +717,11 @@ background.png
 icon.png
 ```
 
-No los cambies.
-
-Por ejemplo, esto podría causar problemas:
+Por ejemplo, esto sería incorrecto:
 
 ```text
-backround.png
+background.jpg
 ```
-
-❌ Incorrecto.
 
 Debe ser:
 
@@ -693,11 +729,25 @@ Debe ser:
 background.png
 ```
 
+Y esto:
+
+```text
+music.wav
+```
+
+también sería incorrecto.
+
+Debe ser:
+
+```text
+bgm.wav
+```
+
 ---
 
 # 📌 No utilices rutas absolutas
 
-No debes escribir rutas específicas de tu ordenador como:
+No escribas rutas específicas de tu ordenador como:
 
 ```text
 C:\Users\TuNombre\Desktop\Mi Tema\bgm.wav
@@ -709,7 +759,7 @@ El código proporcionado utiliza:
 CARPETA = os.path.dirname(os.path.abspath(__file__))
 ```
 
-Esto hace que el tema encuentre sus archivos dentro de su propia carpeta.
+Esto permite que el tema encuentre automáticamente sus archivos dentro de su propia carpeta.
 
 Por eso puedes compartir la carpeta del tema con otras personas sin tener que modificar las rutas.
 
@@ -721,9 +771,9 @@ Luigi Theme Assistant está dividido en dos programas principales.
 
 ## `Luigi Theme Assistant.exe`
 
-Es el **launcher**.
+Este es el **launcher**.
 
-Es el archivo que el usuario ejecuta normalmente.
+Es el programa que el usuario ejecuta normalmente.
 
 Su función es iniciar:
 
@@ -731,21 +781,77 @@ Su función es iniciar:
 Luigi_Theme_Assistant.exe
 ```
 
+El launcher no necesita que el usuario tenga instaladas manualmente las librerías de Luigi Theme Assistant.
+
 ---
 
 ## `Luigi_Theme_Assistant.exe`
 
-Es el programa principal.
+Este es el programa principal.
 
 Se encarga de:
 
 - Detectar Python.
+- Comprobar `python.exe`.
+- Comprobar `pythonw.exe`.
 - Guardar las rutas de Python.
-- Buscar los temas.
+- Buscar la carpeta `Themes`.
+- Detectar los temas disponibles.
 - Crear el menú del área de notificaciones.
-- Ejecutar los temas.
+- Ejecutar los `config_desktop.py`.
 - Cambiar entre temas.
-- Cerrar los temas anteriores.
+- Detener el tema anterior.
+
+Las librerías utilizadas por el propio Assistant ya están incluidas en el ejecutable.
+
+---
+
+# 🐍 ¿Por qué los temas necesitan Python?
+
+Los temas utilizan un archivo:
+
+```text
+config_desktop.py
+```
+
+Este archivo contiene las instrucciones que hacen funcionar el tema.
+
+Por ejemplo:
+
+- Reproducir la música.
+- Cambiar el fondo.
+- Crear el icono.
+- Crear el menú de controles.
+
+Luigi Theme Assistant utiliza el `pythonw.exe` detectado automáticamente para ejecutar estos archivos.
+
+Por eso **Python sigue siendo necesario para los temas**, aunque Luigi Theme Assistant esté distribuido como `.exe`.
+
+---
+
+# 📄 ¿Por qué existe `ruta_python.json`?
+
+Cada ordenador puede tener Python instalado en una ubicación diferente.
+
+Por ejemplo:
+
+```text
+C:\Users\Usuario\AppData\Local\Programs\Python\Python312\
+```
+
+o:
+
+```text
+C:\Python312\
+```
+
+Por eso Luigi Theme Assistant detecta automáticamente la instalación de Python y guarda las rutas en:
+
+```text
+config/ruta_python.json
+```
+
+Así no tienes que modificar manualmente el programa.
 
 ---
 
@@ -786,9 +892,37 @@ Luigi Theme Assistant/
 
 ---
 
-# ✅ Lista rápida para crear un tema
+# 🎯 Recomendaciones para crear temas
 
-Antes de compartir tu tema, comprueba que tengas:
+Aunque puedes utilizar prácticamente cualquier archivo compatible, se recomienda:
+
+### 🖼️ Fondo
+
+Utilizar una imagen con una resolución adecuada para tu monitor.
+
+Por ejemplo:
+
+```text
+1920x1080
+```
+
+si utilizas una pantalla Full HD.
+
+### 🎵 Música
+
+Utilizar un archivo `.wav` que no sea excesivamente grande.
+
+Recuerda que la música se reproduce continuamente.
+
+### 🟢 Icono
+
+Utilizar una imagen sencilla que pueda reconocerse fácilmente en el área de notificaciones.
+
+---
+
+# 📋 Checklist para compartir un tema
+
+Antes de compartir tu tema, comprueba que tenga:
 
 ```text
 ☐ config_desktop.py
@@ -797,7 +931,7 @@ Antes de compartir tu tema, comprueba que tengas:
 ☐ icon.png
 ```
 
-Y que estén todos dentro de una única carpeta:
+Y que todos estén dentro de una única carpeta:
 
 ```text
 Themes/
@@ -808,58 +942,97 @@ Themes/
     └── icon.png
 ```
 
+Si los cuatro archivos están presentes, el tema está preparado para compartir.
+
 ---
 
 # 🚀 Crear un tema desde cero — resumen
 
 Si quieres crear un tema rápidamente:
 
-### 1. Crea una carpeta dentro de `Themes`
+### 1.
+
+Crea una carpeta dentro de:
+
+```text
+Themes/
+```
+
+Por ejemplo:
 
 ```text
 Themes/Mi Tema/
 ```
 
-### 2. Añade el fondo
+### 2.
+
+Añade el fondo:
 
 ```text
 background.png
 ```
 
-### 3. Añade la música
+### 3.
+
+Añade la música:
 
 ```text
 bgm.wav
 ```
 
-### 4. Añade el icono
+### 4.
+
+Añade el icono:
 
 ```text
 icon.png
 ```
 
-### 5. Crea el archivo Python
+### 5.
+
+Crea:
 
 ```text
 config_desktop.py
 ```
 
-### 6. Copia el código proporcionado anteriormente.
+### 6.
 
-### 7. Instala Python y las librerías necesarias.
+Copia el código proporcionado en esta guía.
 
-### 8. Ejecuta Luigi Theme Assistant.
+### 7.
 
-### 9. Busca tu tema en el menú.
+Asegúrate de tener Python 3.10.11 o superior instalado.
 
-### 10. Selecciónalo y disfruta de tu nuevo tema. 🟢🎵
+### 8.
+
+Ejecuta:
+
+```text
+Luigi Theme Assistant.exe
+```
+
+### 9.
+
+Busca tu tema en el menú.
+
+### 10.
+
+Selecciona tu tema.
+
+### 11.
+
+¡Disfruta de tu nuevo tema! 🟢🎵🎨
 
 ---
 
 # 🟢 Luigi Theme Assistant
 
-**Crea tus propios temas. Compártelos. Personaliza tu escritorio.**
+**Crea tus propios temas.**
+
+**Personaliza tu escritorio.**
+
+**Agradecería que me dejaras una estrella porque el proyecto no a sido fácil**
+**Comparte tus temas.**
 
 🎨 🖼️ 🎵 🟢
-
-**Si te a gustado agradecería que me dieras una estrella**
