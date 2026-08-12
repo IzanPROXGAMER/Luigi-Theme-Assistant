@@ -980,4 +980,6 @@ Selecciona tu tema.
 🎨 🖼️ 🎵 🟢
 
 
+**Si tienes alguna queja, duda o problema dilo porfavor, me ayudaría a mejorar el proyecto**
+
 **Agradecería que me dejaras una estrella, gracias :3**
